@@ -4,7 +4,6 @@ const port = 3986;
 const Tauth = require('./config/secrete'); 
 const fetch = require('node-fetch');
 const app = express();
-
 let tweetArray = [];
 let client = new Twitter({
   consumer_key: Tauth.consumer_key,
@@ -23,17 +22,18 @@ fetch('http://numbersapi.com/'+randomYear+'/year')
 	.then( data => {
 		client.post('statuses/update', {status: data}, function(error, tweet, response) {
   if (!error) {
-    console.log(error);
-  }
-  console.log('A new tweet has been sent');
+     console.log('A new tweet has been sent');
   tweetArray.push(randomYear)
   console.log(tweetArray.length+'  posts made');
+  }else{
+  	    console.log(error);
+  }
+ 
 });
+console.log('hi')
 	})
 	.catch( err => console.log(err))
-
-
-}, 21600000)
+}, 10800000)
 
 app.listen(process.env.PORT || port, () => {
 	console.log(`Server started on port ${port}`)
