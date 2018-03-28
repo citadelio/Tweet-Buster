@@ -13,27 +13,30 @@ let client = new Twitter({
 });
  
 let params = {screen_name: 'citadel50'};
+app.get('/', (req, res) => {
 
 setInterval( () => {
 let randomYear = new Date().getFullYear() - Math.floor(Math.random()*100);
 
 fetch('http://numbersapi.com/'+randomYear+'/year')
-	.then(res => res.text())
-	.then( data => {
-		client.post('statuses/update', {status: data}, function(error, tweet, response) {
+  .then(res => res.text())
+  .then( data => {
+    client.post('statuses/update', {status: data}, function(error, tweet, response) {
   if (!error) {
      console.log('A new tweet has been sent');
   tweetArray.push(randomYear)
   console.log(tweetArray.length+'  posts made');
   }else{
-  	    console.log(error);
+        console.log(error);
   }
  
 });
-console.log('hi')
-	})
-	.catch( err => console.log(err))
-}, 10800000)
+  })
+  .catch( err => console.log(err))
+}, 10000) //10800000)
+
+res.send('Working...');
+})
 
 app.listen(process.env.PORT || port, () => {
 	console.log(`Server started on port ${port}`)
