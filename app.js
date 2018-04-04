@@ -3,6 +3,7 @@ const Twitter = require('twitter');
 const port = 3986;
 const Tauth = require('./config/secrete'); 
 const fetch = require('node-fetch');
+const cors = require('cors');
 const app = express();
 let tweetArray = [];
 let client = new Twitter({
@@ -11,11 +12,11 @@ let client = new Twitter({
   access_token_key: Tauth.access_token_key,
   access_token_secret: Tauth.access_token_secret
 });
- 
+app.use(cors());
 let params = {screen_name: 'citadel50'};
 app.get('/', (req, res) => {
 
-setInterval( () => {
+setTimeout( () => {
 let randomYear = new Date().getFullYear() - Math.floor(Math.random()*100);
 
 fetch('http://numbersapi.com/'+randomYear+'/year')
@@ -33,7 +34,7 @@ fetch('http://numbersapi.com/'+randomYear+'/year')
 });
   })
   .catch( err => console.log(err))
-}, 10800000)
+}, 10000)
 
 res.send('Working...');
 })
