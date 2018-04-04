@@ -16,7 +16,7 @@ app.use(cors());
 let params = {screen_name: 'citadel50'};
 //app.get('/', (req, res) => {
 
-setTimeout( () => {
+setInterval( () => {
 let randomYear = new Date().getFullYear() - Math.floor(Math.random()*100);
 
 fetch('http://numbersapi.com/'+randomYear+'/year')
