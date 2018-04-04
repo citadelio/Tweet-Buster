@@ -14,7 +14,7 @@ let client = new Twitter({
 });
 app.use(cors());
 let params = {screen_name: 'citadel50'};
-app.get('/', (req, res) => {
+//app.get('/', (req, res) => {
 
 setTimeout( () => {
 let randomYear = new Date().getFullYear() - Math.floor(Math.random()*100);
@@ -36,8 +36,8 @@ fetch('http://numbersapi.com/'+randomYear+'/year')
   .catch( err => console.log(err))
 }, 10000)
 
-res.send('Working...');
-})
+//res.send('Working...');
+//})
 
 app.listen(process.env.PORT || port, () => {
 	console.log(`Server started on port ${port}`)
