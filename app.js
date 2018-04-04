@@ -34,7 +34,7 @@ fetch('http://numbersapi.com/'+randomYear+'/year')
 });
   })
   .catch( err => console.log(err))
-}, 60000)
+}, 1800000)
 
 //res.send('Working...');
 //})
